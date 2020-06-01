@@ -19,3 +19,11 @@ function refreshScreen () {
 updateClock();
 
 let clock = setInterval(updateClock, 1000);
+
+
+let newBlock = $('<div id = " + i + " class = "row future">');
+
+let hourData = $()
+let inp
+
+let inputField = $('<textarea class="w-100" placeholder="Write your todo here">');
