@@ -1,3 +1,17 @@
+const scheduleStorageCell = "AppointmentData";
+
+// Returns empty schedule data
+function emptySchedule() {
+    
+}
+
+function init() {
+    // initializes data from local storage 
+    const maybeSchedule = localStorage.getItem(scheduleStorageCell);
+    if (maybeSchedule) return JSON.parse(maybeSchedule);
+    return emptySchedule();
+}
+
 function updateClock() {
     $('#current-time').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 }
