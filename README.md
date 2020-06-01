@@ -1,5 +1,10 @@
 # Svitlana's Daily planner
 
+https://szaster.github.io/DayScheduler-HW5/
+
+https://github.com/szaster/DayScheduler-HW5
+
+
 This simple calendar application was created to organize daily tasks, to-dos, thoughts, ideas, and save important events.  User saves events for each hour of the day.
 
 
