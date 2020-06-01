@@ -2,11 +2,12 @@ const scheduleStorageCell = "AppointmentData";
 const hoursInSchedule = [9,10,11,12,13,14,15,16,17];
 const placeholder = "Write your task here";
 
-//Variable keeping state
-let state = {};
+//Variable keeping state of the application
+let state = [];
 
 // Returns empty schedule cells for all hours in the schedule
 function emptySchedule() {
+    // resulting state = [{start: 9, content: ""}]
     return hoursInSchedule.map(makeEmptyCell);
 }
 
@@ -14,8 +15,7 @@ function emptySchedule() {
 function makeEmptyCell(hour){
     return {
         start: hour,
-        content: "",
-        isModified: false
+        content: ""
     }
 }
 
@@ -87,9 +87,21 @@ function cellToHtml(cell) {
 }
 
 
-
+// This function takes a current state of an pplication and concerts it to html and displays on a page 
 function draw(state) {
-    
+    const container = $("#time-block");
+    container.empty();
+    state.forEach(function (cell, i) {
+        container.append($.parseHTML(cellToHtml(cell)));
+        const input = $(`#${descriptionId(cell.start)}`);
+        input.change(function(){
+            state[i].content = input.val();
+        });
+        const btn = $(`#${buttonId(cell.start)}`);
+        btn.click(function(){
+            save(state);
+        });
+    });
 }
 
 
@@ -121,6 +133,12 @@ function redraw () {
 
 // Show the time when the page loads
 updateClock();
+
+//current state of the application
+state = init();
+
+// draw current schedule
+draw(state);
 
 setInterval(updateClock, 1000);
 
